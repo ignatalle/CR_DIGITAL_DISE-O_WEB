@@ -380,40 +380,88 @@
         // === 1. DATOS INICIALES ===
         // NOTA: Cuando descargues la web final, este bloque se actualizará automáticamente.
         const defaultDB = {
-            brandName: "CR Digital",
-            initials: "CR",
-            logoImg: "", 
-            heroBadge: "Agencia de Marketing & IA",
-            heroTitle1: "Impulsamos tu negocio con",
-            heroTitle2: "soluciones reales.",
-            heroMediaType: "image", 
-            heroImg: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            aiTitle: "¿Qué necesita tu empresa hoy?",
-            aiDesc: "Nuestra IA analizará tu situación y te recomendará el plan perfecto.",
-            contactTitle: "Empecemos a trabajar",
-            contactDesc: "Cuéntanos tu proyecto y recibe una propuesta en 24hs.",
-            footerText: "© 2025 CR Digital. Todos los derechos reservados.",
-            aboutImg: "img/ignacio.jpg",
-            aboutName: "Ignacio J. Casado",
-            aboutRole: "Director General",
-            aboutQuote: '"La tecnología debe hacer crecer tu negocio."',
-            aboutBio: "Como Director de CR Digital, combino la disciplina operativa con la innovación de la Inteligencia Artificial. No hacemos webs por hacer; construimos activos digitales que venden.",
-            aboutAspect: "aspect-video", 
-            aboutFit: "object-cover object-top",
-            services: [
-                { title: "Diseño Web Premium", desc: "Landing pages y E-commerce con UX de alto nivel.", icon: "monitor" },
-                { title: "Automatización IA", desc: "Chatbots inteligentes y flujos de trabajo automáticos.", icon: "bot" },
-                { title: "Social Media", desc: "Estrategia de contenido y gestión de comunidades.", icon: "share-2" },
-                { title: "Publicidad (Ads)", desc: "Campañas en Google y Meta enfocadas en ROI.", icon: "target" },
-                { title: "Branding", desc: "Identidad visual, logotipos y manual de marca.", icon: "pen-tool" },
-                { title: "Producción Video", desc: "Edición profesional para contenido viral.", icon: "video" }
-            ],
-            pricing: [
-                { name: "Emprendedor", price: "Consultar", features: ["Landing Page", "SEO Básico", "Formulario"] },
-                { name: "Profesional", price: "A Medida", features: ["Web Completa", "Chatbot IA", "Blog"] },
-                { name: "Empresa", price: "Personalizado", features: ["E-commerce", "Full Ads", "Soporte 24/7"] }
+    "brandName": "CR Digital",
+    "initials": "CR",
+    "logoImg": "img/Logo.png",
+    "heroBadge": "Agencia de Marketing & IA",
+    "heroTitle1": "Impulsamos tu negocio con",
+    "heroTitle2": "soluciones reales.",
+    "heroMediaType": "video",
+    "heroImg": "video/video.mp4",
+    "aiTitle": "¿Qué necesita tu empresa hoy?",
+    "aiDesc": "Nuestra IA analizará tu situación y te recomendará el plan perfecto.",
+    "contactTitle": "Empecemos a trabajar",
+    "contactDesc": "Cuéntanos tu proyecto y recibe una propuesta en 24hs.",
+    "footerText": "© 2025 CR Digital. Todos los derechos reservados.",
+    "aboutImg": "img/ignacio.jpg",
+    "aboutName": "Ignacio J. Casado",
+    "aboutRole": "Director General",
+    "aboutQuote": "\"La tecnología debe hacer crecer tu negocio.\"",
+    "aboutBio": "Como Director de CR Digital, combino la disciplina operativa con la innovación de la Inteligencia Artificial. No hacemos webs por hacer; construimos activos digitales que venden.",
+    "aboutAspect": "aspect-square",
+    "aboutFit": "object-cover object-top",
+    "services": [
+        {
+            "title": "Diseño Web Premium",
+            "desc": "Landing pages y E-commerce con UX de alto nivel.",
+            "icon": "monitor"
+        },
+        {
+            "title": "Automatización IA",
+            "desc": "Chatbots inteligentes y flujos de trabajo automáticos.",
+            "icon": "bot"
+        },
+        {
+            "title": "Social Media",
+            "desc": "Estrategia de contenido y gestión de comunidades.",
+            "icon": "share-2"
+        },
+        {
+            "title": "Publicidad (Ads)",
+            "desc": "Campañas en Google y Meta enfocadas en ROI.",
+            "icon": "target"
+        },
+        {
+            "title": "Branding",
+            "desc": "Identidad visual, logotipos y manual de marca.",
+            "icon": "pen-tool"
+        },
+        {
+            "title": "Producción Video",
+            "desc": "Edición profesional para contenido viral.",
+            "icon": "video"
+        }
+    ],
+    "pricing": [
+        {
+            "name": "Emprendedor",
+            "price": "Consultar",
+            "features": [
+                "Landing Page",
+                "SEO Básico",
+                "Formulario"
             ]
-        };
+        },
+        {
+            "name": "Profesional",
+            "price": "A Medida",
+            "features": [
+                "Web Completa",
+                "Chatbot IA",
+                "Blog"
+            ]
+        },
+        {
+            "name": "Empresa",
+            "price": "Personalizado",
+            "features": [
+                "E-commerce",
+                "Full Ads",
+                "Soporte 24/7"
+            ]
+        }
+    ]
+};
 
         // === 2. GESTIÓN DE ESTADO ===
         let db = JSON.parse(localStorage.getItem('cr_data_v5_5')) || JSON.parse(JSON.stringify(defaultDB));
