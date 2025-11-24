@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CR Digital | Marketing & IA</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#050505', 
+                        card: '#0F0F0F',
+                        accent: '#3B82F6',
+                        gold: '#F59E0B',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #050505; color: #FFFFFF; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        h1, h2, h3, h4, .font-heading { font-family: 'Poppins', sans-serif; }
+        
+        .glass-nav { background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            backdrop-filter: blur(10px); 
+            transition: all 0.3s ease; 
+        }
+        .glass-card:hover { 
+            transform: translateY(-5px); 
+            border-color: rgba(59, 130, 246, 0.3); 
+            box-shadow: 0 10px 40px -10px rgba(59, 130, 246, 0.15); 
+        }
+        
+        .hero-gradient { background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 40%), radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.05), transparent 40%); }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .chat-bubble { opacity: 0; transform: translateY(10px); animation: popIn 0.3s forwards; }
+        @keyframes popIn { to { opacity: 1; transform: translateY(0); } }
+        
+        /* Efecto para el logo */
+        .mix-blend-screen { mix-blend-mode: screen; }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent selection:text-white relative">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3 group">
+                <img id="nav-logo-img" src="" class="h-12 w-auto hidden object-contain transition-transform group-hover:scale-105 mix-blend-screen" alt="Logo">
+                <div id="nav-logo-text" class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg group-hover:scale-110 transition-transform">
+                    <span id="nav-initials">CR</span>
+                </div>
+                <span class="font-heading font-bold text-xl tracking-tight text-white" id="nav-name">Digital</span>
+            </a>
+            
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+                <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
+                <a href="#consultor-ia" class="text-accent hover:text-white transition-colors font-semibold">Consultor IA</a>
+                <a href="#planes" class="hover:text-white transition-colors">Planes</a>
+                <a href="#nosotros" class="hover:text-white transition-colors">Nosotros</a>
+            </div>
+
+            <a href="#contacto" class="hidden md:block bg-white text-black px-6 py-2.5 rounded-full text-sm font-bold hover:bg-gray-200 transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                Contacto
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen flex items-center pt-20 hero-gradient overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-accent/5 blur-[100px] -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-center md:text-left z-10">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-xs font-semibold text-gray-300 mb-8 backdrop-blur-md">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span id="hero-badge">Agencia de Marketing & IA</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-bold leading-[1.1] mb-6">
+                    <span id="hero-title-1">Impulsamos tu negocio con</span> <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-purple-400" id="hero-title-2">soluciones reales.</span>
+                </h1>
+                
+                <p class="text-lg text-gray-400 mb-8 leading-relaxed max-w-xl mx-auto md:mx-0 font-light" id="hero-desc">
+                    Diseño web premium, automatización con IA y estrategias de marketing que convierten visitantes en clientes fieles.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#consultor-ia" class="bg-accent hover:bg-blue-600 text-white px-8 py-4 rounded-full font-bold transition shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i> Consultor IA
+                    </a>
+                    <a href="#portafolio" class="px-8 py-4 rounded-full border border-white/20 hover:bg-white/5 text-white transition font-medium flex items-center justify-center">
+                        Ver Proyectos
+                    </a>
+                </div>
+            </div>
+            
+            <div class="relative hidden md:block">
+                <div class="relative w-full aspect-square animate-float">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-accent to-purple-600 rounded-full opacity-20 blur-3xl"></div>
+                    
+                    <div id="hero-media-container" class="relative rounded-2xl shadow-2xl border border-white/10 overflow-hidden w-full h-full opacity-90">
+                        <img id="hero-img" src="" class="w-full h-full object-cover hidden">
+                        
+                        <video id="hero-video" class="w-full h-full object-cover hidden" autoplay loop muted playsinline>
+                            <source id="hero-video-src" src="" type="video/mp4">
+                        </video>
+                    </div>
+                    
+                    <div class="absolute -bottom-6 -left-6 glass-card p-4 rounded-xl flex items-center gap-3 animate-pulse-slow z-20">
+                        <div class="bg-green-500/20 p-2 rounded-lg text-green-400"><i data-lucide="trending-up"></i></div>
+                        <div>
+                            <p class="text-xs text-gray-400">ROI Promedio</p>
+                            <p class="font-bold text-white text-lg">+150%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="consultor-ia" class="py-24 relative border-y border-white/5 bg-black/50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="text-accent text-sm font-bold tracking-widest uppercase">Inteligencia Artificial</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 font-heading" id="ai-title">¿Qué necesita tu empresa hoy?</h2>
+                <p class="text-gray-400 mt-2" id="ai-desc">Nuestra IA analizará tu situación y te recomendará el plan perfecto.</p>
+            </div>
+
+            <div class="glass-card rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[500px] border border-accent/20">
+                <div class="bg-white/5 p-4 border-b border-white/5 flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-accent to-purple-600 rounded-full flex items-center justify-center text-white shadow-lg">
+                        <i data-lucide="bot" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-sm text-white">Asistente CR Digital</div>
+                        <div class="text-xs text-green-400 flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span> En línea</div>
+                    </div>
+                </div>
+
+                <div id="chat-messages" class="flex-1 p-6 overflow-y-auto space-y-4 bg-black/40"></div>
+                <div id="chat-options" class="p-4 bg-white/5 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-3 min-h-[100px] items-center transition-all"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-24 bg-primary relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 font-heading">Nuestros Servicios</h2>
+                <p class="text-gray-400">Soluciones integrales para escalar tu negocio.</p>
+            </div>
+            <div id="services-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+    </section>
+
+    <section id="planes" class="py-24 bg-gradient-to-b from-primary to-[#0a0a0a]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 font-heading">Planes a Medida</h2>
+                <p class="text-gray-400">Transparencia total. Sin costos ocultos.</p>
+            </div>
+            <div id="pricing-grid" class="grid md:grid-cols-3 gap-8"></div>
+        </div>
+    </section>
+
+    <section id="nosotros" class="py-24 bg-black relative overflow-hidden border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2">
+                <div class="relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-accent to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                    <div id="about-img-container" class="relative bg-gray-900 rounded-xl overflow-hidden border border-white/10 transition-all duration-500">
+                        <img id="about-img" src="" alt="Director" class="w-full h-full grayscale group-hover:grayscale-0 transition duration-700">
+                        <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/80 to-transparent">
+                            <h3 class="text-white font-bold text-xl" id="about-name">Ignacio J. Casado</h3>
+                            <p class="text-accent text-sm" id="about-role">Director General</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <h2 class="text-4xl font-bold mb-6 font-heading" id="about-quote">"La tecnología debe hacer crecer tu negocio."</h2>
+                <p class="text-gray-400 text-lg mb-6 leading-relaxed" id="about-bio">
+                    Como Director de CR Digital, combino la disciplina operativa con la innovación. No hacemos webs por hacer; construimos activos digitales que venden.
+                </p>
+                <div class="grid grid-cols-2 gap-4 mt-8">
+                    <div class="border-l-2 border-accent pl-4">
+                        <h4 class="text-white font-bold">Estrategia</h4>
+                        <p class="text-sm text-gray-500">Visión a largo plazo</p>
+                    </div>
+                    <div class="border-l-2 border-gold pl-4">
+                        <h4 class="text-white font-bold">Resultados</h4>
+                        <p class="text-sm text-gray-500">ROI Medible</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-24 relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="glass-card p-10 rounded-3xl text-center border-accent/20 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-[80px] -z-10"></div>
+                
+                <h2 class="text-3xl font-bold mb-4 font-heading" id="contact-title">Empecemos a trabajar</h2>
+                <p class="text-gray-400 mb-8" id="contact-desc">Cuéntanos tu proyecto y recibe una propuesta en 24hs.</p>
+                
+                <form onsubmit="event.preventDefault(); alert('¡Mensaje enviado con éxito!')" class="space-y-4 max-w-lg mx-auto text-left">
+                    <div>
+                        <label class="text-xs text-gray-500 uppercase font-bold ml-1">Nombre</label>
+                        <input type="text" class="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-white focus:border-accent outline-none transition mt-1">
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-500 uppercase font-bold ml-1">Email</label>
+                        <input type="email" class="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-white focus:border-accent outline-none transition mt-1">
+                    </div>
+                    <button type="submit" class="w-full bg-accent hover:bg-blue-600 text-white font-bold py-4 rounded-lg transition shadow-lg mt-4">
+                        Solicitar Presupuesto
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black border-t border-white/10 pt-12 pb-8 text-center">
+        <p class="text-gray-500 text-sm" id="footer-text">© 2025 CR Digital. Todos los derechos reservados.</p>
+    </footer>
+
+    <button id="admin-btn" onclick="toggleAdmin()" class="hidden fixed bottom-6 right-6 z-50 bg-[#111] text-white p-4 rounded-full shadow-2xl border border-white/10 hover:border-accent hover:text-accent transition-all group" title="Modo Admin">
+        <i data-lucide="lock" class="w-5 h-5"></i>
+    </button>
+
+    <div id="admin-panel" class="fixed top-0 right-0 w-full md:w-[450px] h-full bg-[#0a0a0a] border-l border-white/10 z-50 transform translate-x-full transition-transform duration-300 shadow-2xl flex flex-col">
+        <div class="p-6 border-b border-white/10 flex justify-between items-center bg-[#111]">
+            <div>
+                <h3 class="font-bold text-white text-lg">Editor CR Digital v5.4</h3>
+                <p class="text-xs text-gray-500">Panel Admin (Stealth Mode)</p>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="resetData()" class="text-xs text-red-500 hover:text-red-400 px-3 py-1 border border-red-900/50 rounded hover:bg-red-900/20">Reset</button>
+                <button onclick="toggleAdmin()" class="bg-white/10 p-2 rounded hover:bg-white/20"><i data-lucide="x" class="w-4 h-4"></i></button>
+            </div>
+        </div>
+        
+        <div class="flex-1 overflow-y-auto p-6 space-y-8 no-scrollbar">
+            
+            <div class="space-y-4">
+                <h4 class="text-accent text-xs font-bold uppercase border-b border-white/10 pb-2 flex items-center gap-2"><i data-lucide="layout" class="w-3 h-3"></i> Hero & Marca</h4>
+                <div class="space-y-3">
+                    <label class="text-xs text-gray-500">Nombre Agencia</label>
+                    <input type="text" id="inp-brandName" oninput="updateData('brandName', this.value)" class="w-full bg-white/5 border border-white/10 rounded p-3 text-sm text-white focus:border-accent outline-none">
+                    
+                    <div class="bg-white/5 p-3 rounded border border-white/10">
+                        <label class="text-xs text-accent font-bold">Logo de la Web</label>
+                        <p class="text-[10px] text-gray-400 mb-2">Deja vacío para usar Iniciales. Pega URL para usar Imagen.</p>
+                        <input type="text" id="inp-logoImg" oninput="updateData('logoImg', this.value)" class="w-full bg-black border border-white/20 rounded p-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: img/logo.png">
+                    </div>
+
+                    <label class="text-xs text-gray-500">Badge Superior</label>
+                    <input type="text" id="inp-heroBadge" oninput="updateData('heroBadge', this.value)" class="w-full bg-white/5 border border-white/10 rounded p-3 text-sm text-white focus:border-accent outline-none">
+                    
+                    <label class="text-xs text-gray-500">Título Principal</label>
+                    <input type="text" id="inp-heroTitle1" oninput="updateData('heroTitle1', this.value)" class="w-full bg-white/5 border border-white/10 rounded p-3 text-sm text-white focus:border-accent outline-none">
+                    <input type="text" id="inp-heroTitle2" oninput="updateData('heroTitle2', this.value)" class="w-full bg-white/5 border border-white/10 rounded p-3 text-sm text-white focus:border-accent outline-none">
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-accent text-xs font-bold uppercase border-b border-white/10 pb-2 flex items-center gap-2"><i data-lucide="video" class="w-3 h-3"></i> Multimedia Hero</h4>
+                <div class="space-y-3 bg-white/5 p-3 rounded border border-white/10">
+                    <div>
+                        <label class="text-xs text-gray-500 font-bold">Tipo de Medio</label>
+                        <select id="inp-heroMediaType" onchange="updateData('heroMediaType', this.value)" class="w-full bg-black border border-white/20 rounded text-sm p-2 text-white mt-1 outline-none">
+                            <option value="image">Foto (Imagen)</option>
+                            <option value="video">Video (MP4 en bucle)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-500 font-bold">URL del Archivo</label>
+                        <input type="text" id="inp-heroImg" oninput="updateData('heroImg', this.value)" class="w-full bg-black border border-white/20 rounded p-2 text-sm text-white focus:border-accent outline-none mt-1" placeholder="Ej: video/hero.mp4 o img/fondo.jpg">
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-accent text-xs font-bold uppercase border-b border-white/10 pb-2 flex items-center gap-2"><i data-lucide="user" class="w-3 h-3"></i> Sección Nosotros</h4>
+                <div class="space-y-3">
+                    <label class="text-xs text-gray-500">Nombre Director</label>
+                    <input type="text" id="inp-aboutName" oninput="updateData('aboutName', this.value)" class="w-full bg-white/5 border border-white/10 rounded p-3 text-sm text-white focus:border-accent outline-none">
+                    
+                    <label class="text-xs text-gray-500">Foto Director (URL)</label>
+                    <input type="text" id="inp-aboutImg" oninput="updateData('aboutImg', this.value)" class="w-full bg-white/5 border border-white/10 rounded p-3 text-sm text-white focus:border-accent outline-none">
+
+                    <div class="grid grid-cols-2 gap-2 bg-white/5 p-3 rounded border border-white/10">
+                        <div>
+                            <label class="text-xs text-accent font-bold">Formato Marco</label>
+                            <select id="inp-aboutAspect" onchange="updateData('aboutAspect', this.value)" class="w-full bg-black border border-white/20 rounded text-xs p-2 text-white mt-1 outline-none">
+                                <option value="aspect-video">Horizontal (Cine)</option>
+                                <option value="aspect-[3/4]">Vertical (Retrato)</option>
+                                <option value="aspect-square">Cuadrado (1:1)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-accent font-bold">Ajuste Foto</label>
+                            <select id="inp-aboutFit" onchange="updateData('aboutFit', this.value)" class="w-full bg-black border border-white/20 rounded text-xs p-2 text-white mt-1 outline-none">
+                                <option value="object-cover object-center">Centro (Normal)</option>
+                                <option value="object-cover object-top">Arriba (Cara)</option>
+                                <option value="object-contain bg-black">Ver Completa</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label class="text-xs text-gray-500">Frase Destacada</label>
+                    <textarea id="inp-aboutQuote" oninput="updateData('aboutQuote', this.value)" class="w-full bg-white/5 border border-white/10 rounded p-3 text-sm text-white focus:border-accent outline-none h-20"></textarea>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-accent text-xs font-bold uppercase border-b border-white/10 pb-2 flex items-center gap-2"><i data-lucide="grid" class="w-3 h-3"></i> Servicios</h4>
+                <div id="admin-services-list" class="space-y-4"></div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-accent text-xs font-bold uppercase border-b border-white/10 pb-2 flex items-center gap-2"><i data-lucide="credit-card" class="w-3 h-3"></i> Planes</h4>
+                <div id="admin-pricing-list" class="space-y-4"></div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-accent text-xs font-bold uppercase border-b border-white/10 pb-2 flex items-center gap-2"><i data-lucide="settings" class="w-3 h-3"></i> Textos Varios</h4>
+                <div class="space-y-3">
+                    <label class="text-xs text-gray-500">Título IA</label>
+                    <input type="text" id="inp-aiTitle" oninput="updateData('aiTitle', this.value)" class="w-full bg-white/5 border border-white/10 rounded p-3 text-sm text-white focus:border-accent outline-none">
+                    <label class="text-xs text-gray-500">Copyright Footer</label>
+                    <input type="text" id="inp-footerText" oninput="updateData('footerText', this.value)" class="w-full bg-white/5 border border-white/10 rounded p-3 text-sm text-white focus:border-accent outline-none">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="p-6 border-t border-white/10 bg-[#111]">
+            <button onclick="saveToStorage()" class="w-full bg-green-600 hover:bg-green-500 text-white py-4 rounded-xl font-bold transition-all flex justify-center gap-2 shadow-lg shadow-green-900/20">
+                <i data-lucide="save" class="w-5 h-5"></i> Guardar Todo
+            </button>
+            <p id="save-msg" class="text-center text-xs text-green-400 mt-3 opacity-0 transition-opacity font-bold">¡Cambios guardados con éxito!</p>
+        </div>
+    </div>
+
+    <script>
+        // === 1. DATOS INICIALES ===
+        const defaultDB = {
+            // Marca & Hero
+            brandName: "CR Digital",
+            initials: "CR",
+            logoImg: "", 
+            
+            heroBadge: "Agencia de Marketing & IA",
+            heroTitle1: "Impulsamos tu negocio con",
+            heroTitle2: "soluciones reales.",
+            
+            heroMediaType: "image", // 'image' o 'video'
+            heroImg: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            
+            // Textos Varios
+            aiTitle: "¿Qué necesita tu empresa hoy?",
+            aiDesc: "Nuestra IA analizará tu situación y te recomendará el plan perfecto.",
+            contactTitle: "Empecemos a trabajar",
+            contactDesc: "Cuéntanos tu proyecto y recibe una propuesta en 24hs.",
+            footerText: "© 2025 CR Digital. Todos los derechos reservados.",
+
+            // Nosotros
+            aboutImg: "img/ignacio.jpg",
+            aboutName: "Ignacio J. Casado",
+            aboutRole: "Director General",
+            aboutQuote: '"La tecnología debe hacer crecer tu negocio."',
+            aboutBio: "Como Director de CR Digital, combino la disciplina operativa con la innovación de la Inteligencia Artificial. No hacemos webs por hacer; construimos activos digitales que venden.",
+            aboutAspect: "aspect-video", 
+            aboutFit: "object-cover object-top",
+
+            // Arrays
+            services: [
+                { title: "Diseño Web Premium", desc: "Landing pages y E-commerce con UX de alto nivel.", icon: "monitor" },
+                { title: "Automatización IA", desc: "Chatbots inteligentes y flujos de trabajo automáticos.", icon: "bot" },
+                { title: "Social Media", desc: "Estrategia de contenido y gestión de comunidades.", icon: "share-2" },
+                { title: "Publicidad (Ads)", desc: "Campañas en Google y Meta enfocadas en ROI.", icon: "target" },
+                { title: "Branding", desc: "Identidad visual, logotipos y manual de marca.", icon: "pen-tool" },
+                { title: "Producción Video", desc: "Edición profesional para contenido viral.", icon: "video" }
+            ],
+
+            pricing: [
+                { name: "Emprendedor", price: "Consultar", features: ["Landing Page", "SEO Básico", "Formulario"] },
+                { name: "Profesional", price: "A Medida", features: ["Web Completa", "Chatbot IA", "Blog"] },
+                { name: "Empresa", price: "Personalizado", features: ["E-commerce", "Full Ads", "Soporte 24/7"] }
+            ]
+        };
+
+        // === 2. GESTIÓN DE ESTADO ===
+        let db = JSON.parse(localStorage.getItem('cr_data_v5_4')) || JSON.parse(JSON.stringify(defaultDB));
+
+        // === 3. RENDERIZADO ===
+        function render() {
+            const setText = (id, val) => { const el = document.getElementById(id); if(el) el.innerText = val; };
+            const setSrc = (id, val) => { const el = document.getElementById(id); if(el) el.src = val; };
+
+            setText('nav-name', db.brandName);
+            
+            // Logo Logic
+            const logoImgEl = document.getElementById('nav-logo-img');
+            const logoTextEl = document.getElementById('nav-logo-text');
+            if(db.logoImg && db.logoImg.length > 3) {
+                logoImgEl.src = db.logoImg;
+                logoImgEl.classList.remove('hidden');
+                logoTextEl.classList.add('hidden');
+            } else {
+                logoImgEl.classList.add('hidden');
+                logoTextEl.classList.remove('hidden');
+                setText('nav-initials', db.initials);
+            }
+
+            // Hero Logic
+            setText('hero-badge', db.heroBadge);
+            setText('hero-title-1', db.heroTitle1);
+            setText('hero-title-2', db.heroTitle2);
+            
+            const heroImgEl = document.getElementById('hero-img');
+            const heroVideoEl = document.getElementById('hero-video');
+            if(db.heroMediaType === 'video') {
+                heroImgEl.classList.add('hidden');
+                heroVideoEl.classList.remove('hidden');
+                heroVideoEl.src = db.heroImg;
+            } else {
+                heroVideoEl.classList.add('hidden');
+                heroImgEl.classList.remove('hidden');
+                heroImgEl.src = db.heroImg;
+            }
+
+            setText('ai-title', db.aiTitle);
+            
+            setSrc('about-img', db.aboutImg);
+            const aboutContainer = document.getElementById('about-img-container');
+            const aboutImgEl = document.getElementById('about-img');
+            aboutContainer.className = `relative bg-gray-900 rounded-xl overflow-hidden border border-white/10 shadow-2xl transition-all duration-500 ${db.aboutAspect}`;
+            aboutImgEl.className = `w-full h-full grayscale group-hover:grayscale-0 transition duration-700 ${db.aboutFit}`;
+            setText('about-name', db.aboutName);
+            setText('about-role', db.aboutRole);
+            setText('about-quote', db.aboutQuote);
+            setText('about-bio', db.aboutBio);
+
+            setText('contact-title', db.contactTitle);
+            setText('contact-desc', db.contactDesc);
+            setText('footer-text', db.footerText);
+
+            // Servicios
+            document.getElementById('services-grid').innerHTML = db.services.map(s => `
+                <div class="glass-card p-8 rounded-2xl group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-accent/5 rounded-full blur-xl -mr-10 -mt-10 transition group-hover:bg-accent/10"></div>
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform border border-white/10 group-hover:border-accent/50 group-hover:text-white group-hover:bg-accent">
+                        <i data-lucide="${s.icon}" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white font-heading">${s.title}</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">${s.desc}</p>
+                </div>
+            `).join('');
+
+            // Planes
+            document.getElementById('pricing-grid').innerHTML = db.pricing.map(p => `
+                <div class="glass-card p-8 rounded-2xl flex flex-col relative overflow-hidden group hover:border-accent/40">
+                    <h3 class="text-lg font-bold text-gray-300 mb-2 font-heading uppercase tracking-wider text-xs">${p.name}</h3>
+                    <div class="text-3xl font-bold text-white mb-6 tracking-tight">${p.price}</div>
+                    <ul class="space-y-4 mb-8 flex-1">
+                        ${p.features.map(f => `<li class="flex items-center gap-3 text-sm text-gray-400"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> ${f}</li>`).join('')}
+                    </ul>
+                    <a href="#contacto" class="w-full py-4 rounded-xl border border-white/10 bg-white/5 text-white text-center hover:bg-white hover:text-black transition-all font-bold group-hover:border-accent group-hover:text-accent group-hover:bg-transparent">
+                        Consultar Plan
+                    </a>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        // === 4. PANEL ADMIN ===
+        function renderAdmin() {
+            const setVal = (id, val) => { const el = document.getElementById(id); if(el) el.value = val; };
+            
+            setVal('inp-brandName', db.brandName);
+            setVal('inp-logoImg', db.logoImg); 
+            setVal('inp-heroBadge', db.heroBadge);
+            setVal('inp-heroTitle1', db.heroTitle1);
+            setVal('inp-heroTitle2', db.heroTitle2);
+            setVal('inp-heroImg', db.heroImg);
+            setVal('inp-heroMediaType', db.heroMediaType);
+            setVal('inp-aiTitle', db.aiTitle);
+            setVal('inp-aboutImg', db.aboutImg);
+            setVal('inp-aboutName', db.aboutName);
+            setVal('inp-aboutQuote', db.aboutQuote);
+            setVal('inp-aboutAspect', db.aboutAspect); 
+            setVal('inp-aboutFit', db.aboutFit);
+            setVal('inp-footerText', db.footerText);
+
+            // Servicios
+            document.getElementById('admin-services-list').innerHTML = db.services.map((s, i) => `
+                <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                    <div class="flex gap-2 mb-2">
+                         <div class="w-8 h-8 flex items-center justify-center bg-black rounded text-gray-500"><i data-lucide="${s.icon}" class="w-4 h-4"></i></div>
+                         <input type="text" value="${s.title}" oninput="updateArr('services', ${i}, 'title', this.value)" class="flex-1 bg-transparent text-white font-bold text-sm outline-none border-b border-transparent focus:border-accent placeholder-gray-600">
+                    </div>
+                    <input type="text" value="${s.desc}" oninput="updateArr('services', ${i}, 'desc', this.value)" class="w-full bg-transparent text-gray-400 text-xs outline-none focus:text-white placeholder-gray-600">
+                </div>
+            `).join('');
+
+            // Planes
+            document.getElementById('admin-pricing-list').innerHTML = db.pricing.map((p, i) => `
+                <div class="bg-white/5 p-4 rounded-lg border border-white/10 flex justify-between items-center gap-4">
+                    <input type="text" value="${p.name}" oninput="updateArr('pricing', ${i}, 'name', this.value)" class="bg-transparent text-gray-300 text-sm font-bold w-1/3 outline-none">
+                    <input type="text" value="${p.price}" oninput="updateArr('pricing', ${i}, 'price', this.value)" class="bg-black/30 text-accent font-bold text-sm w-1/2 text-right outline-none rounded px-3 py-2 border border-white/5 focus:border-accent">
+                </div>
+            `).join('');
+            
+            lucide.createIcons();
+        }
+
+        // Helpers
+        function updateData(key, val) { db[key] = val; render(); }
+        function updateArr(arr, idx, key, val) { db[arr][idx][key] = val; render(); }
+        
+        function saveToStorage() {
+            localStorage.setItem('cr_data_v5_4', JSON.stringify(db));
+            const msg = document.getElementById('save-msg');
+            msg.style.opacity = '1';
+            setTimeout(() => msg.style.opacity = '0', 2000);
+        }
+
+        function toggleAdmin() {
+            const panel = document.getElementById('admin-panel');
+            if(panel.classList.contains('translate-x-full')) {
+                renderAdmin();
+                panel.classList.remove('translate-x-full');
+            } else {
+                panel.classList.add('translate-x-full');
+            }
+        }
+
+        function resetData() {
+            if(confirm('¿Reiniciar todo?')) {
+                db = JSON.parse(JSON.stringify(defaultDB));
+                render(); renderAdmin(); saveToStorage();
+            }
+        }
+
+        // Chatbot
+        const chatContainer = document.getElementById('chat-messages');
+        const optionsContainer = document.getElementById('chat-options');
+        const chatFlow = {
+            start: { msg: "¡Hola! Soy la IA de CR Digital. ¿Cuál es tu objetivo principal?", options: [{ label: "Crear Web", next: 'web' }, { label: "Aumentar Ventas", next: 'ads' }] },
+            web: { msg: "¿Qué alcance buscas para tu sitio?", options: [{ label: "Corporativo", next: 'end' }, { label: "E-commerce", next: 'end' }] },
+            ads: { msg: "¿Tienes campañas activas?", options: [{ label: "Sí, optimizar", next: 'end' }, { label: "No, empezar", next: 'end' }] },
+            end: { msg: "Perfecto. Según tu respuesta, te recomiendo agendar una consultoría gratuita.", end: true }
+        };
+
+        function addMsg(text, user=false) {
+            const div = document.createElement('div');
+            div.className = `flex ${user ? 'justify-end' : 'justify-start'} chat-bubble`;
+            div.innerHTML = `<div class="${user ? 'bg-accent text-white shadow-lg shadow-blue-500/20' : 'bg-white/10 text-gray-200 border border-white/5'} p-4 rounded-2xl max-w-[85%] text-sm leading-relaxed">${text}</div>`;
+            chatContainer.appendChild(div);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        function showOpts(opts) {
+            optionsContainer.innerHTML = '';
+            opts.forEach(o => {
+                const btn = document.createElement('button');
+                btn.className = "bg-white/5 hover:bg-accent hover:text-white border border-white/10 text-gray-300 py-3 px-4 rounded-xl text-xs font-bold transition-all uppercase tracking-wide";
+                btn.innerText = o.label;
+                btn.onclick = () => handle(o);
+                optionsContainer.appendChild(btn);
+            });
+        }
+        function handle(opt) {
+            addMsg(opt.label, true);
+            optionsContainer.innerHTML = '<div class="col-span-2 flex justify-center py-4"><div class="w-6 h-6 border-2 border-accent border-t-transparent rounded-full animate-spin"></div></div>';
+            setTimeout(() => {
+                const step = chatFlow[opt.next] || chatFlow.end;
+                addMsg(step.msg);
+                if(step.end) optionsContainer.innerHTML = `<a href="#contacto" class="col-span-2 bg-green-600 hover:bg-green-500 text-white py-4 rounded-xl font-bold text-center shadow-lg transition-all animate-pulse">Solicitar Asesoría</a>`;
+                else showOpts(step.options);
+            }, 800);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            render();
+            setTimeout(() => { addMsg(chatFlow.start.msg); showOpts(chatFlow.start.options); }, 1000);
+
+            // === MODO JEFE (STEALTH MODE) ===
+            // Detecta si en la URL escribiste ?modo=jefe
+            const urlParams = new URLSearchParams(window.location.search);
+            if(urlParams.get('modo') === 'jefe') {
+                const btn = document.getElementById('admin-btn');
+                btn.classList.remove('hidden'); // Muestra el candado
+                console.log('Modo Admin Activado');
+            }
+        });
+    </script>
+</body>
+</html>
