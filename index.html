@@ -260,8 +260,8 @@
     <div id="admin-panel" class="fixed top-0 right-0 w-full md:w-[450px] h-full bg-[#0a0a0a] border-l border-white/10 z-50 transform translate-x-full transition-transform duration-300 shadow-2xl flex flex-col">
         <div class="p-6 border-b border-white/10 flex justify-between items-center bg-[#111]">
             <div>
-                <h3 class="font-bold text-white text-lg">Editor CR Digital v5.4</h3>
-                <p class="text-xs text-gray-500">Panel Admin (Stealth Mode)</p>
+                <h3 class="font-bold text-white text-lg">Editor CR Digital v5.5</h3>
+                <p class="text-xs text-gray-500">Publicación & Gestión</p>
             </div>
             <div class="flex gap-2">
                 <button onclick="resetData()" class="text-xs text-red-500 hover:text-red-400 px-3 py-1 border border-red-900/50 rounded hover:bg-red-900/20">Reset</button>
@@ -271,6 +271,18 @@
         
         <div class="flex-1 overflow-y-auto p-6 space-y-8 no-scrollbar">
             
+            <div class="bg-blue-900/20 p-4 rounded-xl border border-blue-500/30">
+                <h4 class="text-blue-400 text-xs font-bold uppercase mb-2 flex items-center gap-2">
+                    <i data-lucide="cloud-upload" class="w-3 h-3"></i> Publicar en GitHub
+                </h4>
+                <p class="text-xs text-gray-400 mb-3">
+                    Guarda tus cambios y descarga el archivo final para subirlo a GitHub.
+                </p>
+                <button onclick="downloadFinalCode()" class="w-full bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-lg font-bold text-xs transition-all shadow-lg shadow-blue-900/20 flex justify-center items-center gap-2">
+                    <i data-lucide="download" class="w-4 h-4"></i> DESCARGAR WEB FINAL
+                </button>
+            </div>
+
             <div class="space-y-4">
                 <h4 class="text-accent text-xs font-bold uppercase border-b border-white/10 pb-2 flex items-center gap-2"><i data-lucide="layout" class="w-3 h-3"></i> Hero & Marca</h4>
                 <div class="space-y-3">
@@ -279,7 +291,6 @@
                     
                     <div class="bg-white/5 p-3 rounded border border-white/10">
                         <label class="text-xs text-accent font-bold">Logo de la Web</label>
-                        <p class="text-[10px] text-gray-400 mb-2">Deja vacío para usar Iniciales. Pega URL para usar Imagen.</p>
                         <input type="text" id="inp-logoImg" oninput="updateData('logoImg', this.value)" class="w-full bg-black border border-white/20 rounded p-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: img/logo.png">
                     </div>
 
@@ -304,7 +315,7 @@
                     </div>
                     <div>
                         <label class="text-xs text-gray-500 font-bold">URL del Archivo</label>
-                        <input type="text" id="inp-heroImg" oninput="updateData('heroImg', this.value)" class="w-full bg-black border border-white/20 rounded p-2 text-sm text-white focus:border-accent outline-none mt-1" placeholder="Ej: video/hero.mp4 o img/fondo.jpg">
+                        <input type="text" id="inp-heroImg" oninput="updateData('heroImg', this.value)" class="w-full bg-black border border-white/20 rounded p-2 text-sm text-white focus:border-accent outline-none mt-1">
                     </div>
                 </div>
             </div>
@@ -363,38 +374,25 @@
             </div>
 
         </div>
-
-        <div class="p-6 border-t border-white/10 bg-[#111]">
-            <button onclick="saveToStorage()" class="w-full bg-green-600 hover:bg-green-500 text-white py-4 rounded-xl font-bold transition-all flex justify-center gap-2 shadow-lg shadow-green-900/20">
-                <i data-lucide="save" class="w-5 h-5"></i> Guardar Todo
-            </button>
-            <p id="save-msg" class="text-center text-xs text-green-400 mt-3 opacity-0 transition-opacity font-bold">¡Cambios guardados con éxito!</p>
-        </div>
     </div>
 
     <script>
         // === 1. DATOS INICIALES ===
+        // NOTA: Cuando descargues la web final, este bloque se actualizará automáticamente.
         const defaultDB = {
-            // Marca & Hero
             brandName: "CR Digital",
             initials: "CR",
             logoImg: "", 
-            
             heroBadge: "Agencia de Marketing & IA",
             heroTitle1: "Impulsamos tu negocio con",
             heroTitle2: "soluciones reales.",
-            
-            heroMediaType: "image", // 'image' o 'video'
+            heroMediaType: "image", 
             heroImg: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            
-            // Textos Varios
             aiTitle: "¿Qué necesita tu empresa hoy?",
             aiDesc: "Nuestra IA analizará tu situación y te recomendará el plan perfecto.",
             contactTitle: "Empecemos a trabajar",
             contactDesc: "Cuéntanos tu proyecto y recibe una propuesta en 24hs.",
             footerText: "© 2025 CR Digital. Todos los derechos reservados.",
-
-            // Nosotros
             aboutImg: "img/ignacio.jpg",
             aboutName: "Ignacio J. Casado",
             aboutRole: "Director General",
@@ -402,8 +400,6 @@
             aboutBio: "Como Director de CR Digital, combino la disciplina operativa con la innovación de la Inteligencia Artificial. No hacemos webs por hacer; construimos activos digitales que venden.",
             aboutAspect: "aspect-video", 
             aboutFit: "object-cover object-top",
-
-            // Arrays
             services: [
                 { title: "Diseño Web Premium", desc: "Landing pages y E-commerce con UX de alto nivel.", icon: "monitor" },
                 { title: "Automatización IA", desc: "Chatbots inteligentes y flujos de trabajo automáticos.", icon: "bot" },
@@ -412,7 +408,6 @@
                 { title: "Branding", desc: "Identidad visual, logotipos y manual de marca.", icon: "pen-tool" },
                 { title: "Producción Video", desc: "Edición profesional para contenido viral.", icon: "video" }
             ],
-
             pricing: [
                 { name: "Emprendedor", price: "Consultar", features: ["Landing Page", "SEO Básico", "Formulario"] },
                 { name: "Profesional", price: "A Medida", features: ["Web Completa", "Chatbot IA", "Blog"] },
@@ -421,7 +416,7 @@
         };
 
         // === 2. GESTIÓN DE ESTADO ===
-        let db = JSON.parse(localStorage.getItem('cr_data_v5_4')) || JSON.parse(JSON.stringify(defaultDB));
+        let db = JSON.parse(localStorage.getItem('cr_data_v5_5')) || JSON.parse(JSON.stringify(defaultDB));
 
         // === 3. RENDERIZADO ===
         function render() {
@@ -430,7 +425,6 @@
 
             setText('nav-name', db.brandName);
             
-            // Logo Logic
             const logoImgEl = document.getElementById('nav-logo-img');
             const logoTextEl = document.getElementById('nav-logo-text');
             if(db.logoImg && db.logoImg.length > 3) {
@@ -443,7 +437,6 @@
                 setText('nav-initials', db.initials);
             }
 
-            // Hero Logic
             setText('hero-badge', db.heroBadge);
             setText('hero-title-1', db.heroTitle1);
             setText('hero-title-2', db.heroTitle2);
@@ -461,7 +454,6 @@
             }
 
             setText('ai-title', db.aiTitle);
-            
             setSrc('about-img', db.aboutImg);
             const aboutContainer = document.getElementById('about-img-container');
             const aboutImgEl = document.getElementById('about-img');
@@ -471,12 +463,10 @@
             setText('about-role', db.aboutRole);
             setText('about-quote', db.aboutQuote);
             setText('about-bio', db.aboutBio);
-
             setText('contact-title', db.contactTitle);
             setText('contact-desc', db.contactDesc);
             setText('footer-text', db.footerText);
 
-            // Servicios
             document.getElementById('services-grid').innerHTML = db.services.map(s => `
                 <div class="glass-card p-8 rounded-2xl group relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-accent/5 rounded-full blur-xl -mr-10 -mt-10 transition group-hover:bg-accent/10"></div>
@@ -488,7 +478,6 @@
                 </div>
             `).join('');
 
-            // Planes
             document.getElementById('pricing-grid').innerHTML = db.pricing.map(p => `
                 <div class="glass-card p-8 rounded-2xl flex flex-col relative overflow-hidden group hover:border-accent/40">
                     <h3 class="text-lg font-bold text-gray-300 mb-2 font-heading uppercase tracking-wider text-xs">${p.name}</h3>
@@ -508,7 +497,6 @@
         // === 4. PANEL ADMIN ===
         function renderAdmin() {
             const setVal = (id, val) => { const el = document.getElementById(id); if(el) el.value = val; };
-            
             setVal('inp-brandName', db.brandName);
             setVal('inp-logoImg', db.logoImg); 
             setVal('inp-heroBadge', db.heroBadge);
@@ -524,7 +512,6 @@
             setVal('inp-aboutFit', db.aboutFit);
             setVal('inp-footerText', db.footerText);
 
-            // Servicios
             document.getElementById('admin-services-list').innerHTML = db.services.map((s, i) => `
                 <div class="bg-white/5 p-4 rounded-lg border border-white/10">
                     <div class="flex gap-2 mb-2">
@@ -535,7 +522,6 @@
                 </div>
             `).join('');
 
-            // Planes
             document.getElementById('admin-pricing-list').innerHTML = db.pricing.map((p, i) => `
                 <div class="bg-white/5 p-4 rounded-lg border border-white/10 flex justify-between items-center gap-4">
                     <input type="text" value="${p.name}" oninput="updateArr('pricing', ${i}, 'name', this.value)" class="bg-transparent text-gray-300 text-sm font-bold w-1/3 outline-none">
@@ -549,28 +535,50 @@
         // Helpers
         function updateData(key, val) { db[key] = val; render(); }
         function updateArr(arr, idx, key, val) { db[arr][idx][key] = val; render(); }
-        
-        function saveToStorage() {
-            localStorage.setItem('cr_data_v5_4', JSON.stringify(db));
-            const msg = document.getElementById('save-msg');
-            msg.style.opacity = '1';
-            setTimeout(() => msg.style.opacity = '0', 2000);
-        }
-
+        function saveToStorage() { localStorage.setItem('cr_data_v5_5', JSON.stringify(db)); render(); }
         function toggleAdmin() {
             const panel = document.getElementById('admin-panel');
-            if(panel.classList.contains('translate-x-full')) {
-                renderAdmin();
-                panel.classList.remove('translate-x-full');
-            } else {
-                panel.classList.add('translate-x-full');
-            }
+            if(panel.classList.contains('translate-x-full')) { renderAdmin(); panel.classList.remove('translate-x-full'); } 
+            else { panel.classList.add('translate-x-full'); }
         }
-
         function resetData() {
             if(confirm('¿Reiniciar todo?')) {
                 db = JSON.parse(JSON.stringify(defaultDB));
                 render(); renderAdmin(); saveToStorage();
+            }
+        }
+
+        // === 5. FUNCIÓN DE EXPORTACIÓN (NUEVA) ===
+        async function downloadFinalCode() {
+            try {
+                // Obtenemos el código fuente actual
+                const response = await fetch('index.html');
+                if(!response.ok) throw new Error("No se pudo leer el archivo original");
+                let text = await response.text();
+                
+                // Creamos el nuevo bloque de datos
+                const newDB = JSON.stringify(db, null, 4);
+                
+                // Reemplazamos SOLO la variable defaultDB usando una Expresión Regular segura
+                // Busca desde "const defaultDB = {" hasta el primer "};" que encuentre
+                const regex = /const defaultDB = \{[\s\S]*?\};/;
+                
+                const newText = text.replace(regex, `const defaultDB = ${newDB};`);
+
+                // Crear blob y descargar
+                const blob = new Blob([newText], {type: "text/html"});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = "index.html";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                
+                alert("✅ Archivo 'index.html' generado.\n\nAHORA: Arrastra este archivo a tu GitHub para publicar los cambios.");
+            } catch (e) {
+                console.error(e);
+                alert("⚠️ ATENCIÓN: Esta función automática funciona mejor cuando ya estás online en GitHub Pages.\n\nSi estás en local y falla, usa el método manual de copiar la consola.");
             }
         }
 
@@ -616,13 +624,10 @@
             render();
             setTimeout(() => { addMsg(chatFlow.start.msg); showOpts(chatFlow.start.options); }, 1000);
 
-            // === MODO JEFE (STEALTH MODE) ===
-            // Detecta si en la URL escribiste ?modo=jefe
+            // === MODO JEFE ===
             const urlParams = new URLSearchParams(window.location.search);
             if(urlParams.get('modo') === 'jefe') {
-                const btn = document.getElementById('admin-btn');
-                btn.classList.remove('hidden'); // Muestra el candado
-                console.log('Modo Admin Activado');
+                document.getElementById('admin-btn').classList.remove('hidden');
             }
         });
     </script>
